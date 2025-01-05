@@ -121,3 +121,45 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Add these to INSTALLED_APPS list
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    # Add these new apps
+    'rest_framework',
+    'corsheaders',
+    'patients',
+]
+
+# Add this to MIDDLEWARE list (after 'django.middleware.security.SecurityMiddleware')
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Add this line
+    # ... rest of middleware
+]
+
+# Add Database configuration
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'patient_db',
+        'USER': 'postgres',
+        'PASSWORD': 'your_postgres_password',  # Use your actual PostgreSQL password
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+# Add REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+# Add CORS settings
+CORS_ALLOW_ALL_ORIGINS = True  # Only for development
