@@ -19,7 +19,7 @@ class PatientViewSet(viewsets.ModelViewSet):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         
-        # Prevent email updates
+      
         if 'email' in request.data:
             return Response(
                 {"error": "Email cannot be updated"},
