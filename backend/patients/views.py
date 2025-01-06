@@ -12,7 +12,7 @@ class PatientViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.action == 'create':
-            return []  # No permissions required for registration
+            return []  
         return [IsAuthenticated()]
 
     def update(self, request, *args, **kwargs):
